@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FileSearch, Map, X, BrainCircuit, LogOut } from 'lucide-react';
+import { LayoutDashboard, FileSearch, Map as MapIcon, X, BrainCircuit, LogOut, History as HistoryIcon, GraduationCap, ShieldCheck, User, BarChart3 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -14,8 +14,17 @@ const Layout = () => {
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Analyzer', path: '/analyzer', icon: FileSearch },
-    { name: 'Roadmap', path: '/roadmap', icon: Map },
+    { name: 'Roadmap', path: '/roadmap', icon: MapIcon },
+    { name: 'Profile', path: '/profile', icon: User },
+    { name: 'History', path: '/history', icon: HistoryIcon },
+    { name: 'Quizzes', path: '/quiz', icon: GraduationCap },
+    { name: 'Analytics', path: '/analytics', icon: BarChart3 },
   ];
+
+  // Add Admin Dashboard only if user is admin
+  if (user?.is_staff) {
+    navItems.push({ name: 'Admin', path: '/admin-dashboard', icon: ShieldCheck });
+  }
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -25,7 +34,9 @@ const Layout = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const showSidebar = user && ['/dashboard', '/analyzer', '/roadmap'].includes(location.pathname);
+  const showSidebar = user && [
+    '/dashboard', '/analyzer', '/roadmap', '/profile', '/history', '/quiz', '/analytics', '/admin-dashboard'
+  ].includes(location.pathname);
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-on-surface">
@@ -140,8 +151,8 @@ const Layout = () => {
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-w-0">
-          <main className="flex-1 p-4 sm:p-6 lg:p-8">
-            <div className="max-w-7xl mx-auto">
+          <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8">
+            <div className="max-w-7xl mx-auto w-full">
               <Outlet />
             </div>
           </main>

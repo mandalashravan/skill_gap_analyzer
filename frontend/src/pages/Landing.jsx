@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BrainCircuit, CheckCircle2, Rocket, Search, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { BrainCircuit, CheckCircle2, Rocket, Search, ArrowRight, ShieldCheck, Sparkles, Map } from 'lucide-react';
 
 const Landing = () => {
   return (
@@ -47,25 +47,31 @@ const Landing = () => {
             <p className="text-on-surface-variant text-lg">Three steps to your next career milestone</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: Search,
-                title: 'Analyze Gaps',
-                desc: 'Upload your resume and select a job role. Our AI instantly identifies exactly what skills you\'re missing.',
+                title: 'Skill Gap Analysis',
+                desc: 'Upload your resume and select a job role. Our AI identifies exactly what skills you\'re missing with priority levels.',
                 color: 'text-primary'
               },
               {
-                icon: Rocket,
-                title: 'Personalized Roadmap',
-                desc: 'Get a step-by-step learning path tailored to your specific needs and the job market requirements.',
+                icon: Sparkles,
+                title: 'ATS Optimization',
+                desc: 'Receive AI-powered tips to optimize your resume for applicant tracking systems and stand out to recruiters.',
                 color: 'text-secondary'
               },
               {
-                icon: ShieldCheck,
-                title: 'Track Progress',
-                desc: 'Monitor your development with interactive milestones and celebrate as you become job-ready.',
+                icon: Map,
+                title: 'Dynamic Roadmap',
+                desc: 'Get a step-by-step learning path with direct links to top-tier courses, tutorials, and documentation.',
                 color: 'text-emerald-500'
+              },
+              {
+                icon: ShieldCheck,
+                title: 'Skill Validation',
+                desc: 'Validate your knowledge through interactive quizzes and assessments to ensure you\'re truly job-ready.',
+                color: 'text-amber-500'
               }
             ].map((feature, i) => {
               const Icon = feature.icon;
@@ -75,7 +81,7 @@ const Landing = () => {
                     <Icon size={32} />
                   </div>
                   <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                  <p className="text-on-surface-variant leading-relaxed">
+                  <p className="text-on-surface-variant leading-relaxed text-sm">
                     {feature.desc}
                   </p>
                 </div>

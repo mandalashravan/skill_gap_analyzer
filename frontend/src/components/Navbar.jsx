@@ -32,9 +32,9 @@ const Navbar = ({ toggleMobileMenu, isMobileMenuOpen }) => {
               <span className="text-sm font-semibold leading-none">{user?.username || 'Guest'}</span>
               <span className="text-xs text-on-surface-variant leading-tight">{user?.email || 'Welcome'}</span>
             </div>
-            <div className="bg-primary-container p-2 rounded-full">
+            <Link to="/profile" className="bg-primary-container p-2 rounded-full hover:bg-primary/80 transition-colors">
               <User size={18} className="text-on-primary-container" />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

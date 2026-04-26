@@ -28,8 +28,6 @@ db.sqlite3-journal
 backend/staticfiles/
 backend/media/
 backend/test_results.json
-backend/Test_results.md
-backend/API_TESTS.md
 
 # --- Node / React ---
 node_modules/
@@ -58,3 +56,19 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# --- Test Files ---
+test_*.py
+*_test.py
+test_runner.py
+create_sample*.py
+*.test.py
+*test_results*
+
+# --- Temporary Files ---
+*.tmp
+*.temp
+*.bak
+*.backup
+.DS_Store
+Thumbs.db

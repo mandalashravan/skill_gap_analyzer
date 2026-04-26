@@ -112,10 +112,10 @@ const Roadmap = () => {
                   {getStatusIcon(item.status, item.skill)}
                 </button>
                 
-                <div className="flex-1 space-y-3">
+                <div className="flex-1 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="text-lg font-bold">{item.skill_name || `Skill ${item.skill}`}</h4>
+                      <h4 className="text-lg font-bold">{item.skill_details?.name || `Skill ${item.skill}`}</h4>
                       <p className="text-sm text-on-surface-variant">
                         Week {item.week} • {item.estimated_hours} hours estimated
                       </p>
@@ -147,6 +147,27 @@ const Roadmap = () => {
                       ></div>
                     </div>
                   </div>
+
+                  {/* Learning Resources */}
+                  {item.skill_details?.resources?.length > 0 && (
+                    <div className="pt-2 border-t border-outline-variant/30">
+                      <p className="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Recommended Resources</p>
+                      <div className="flex flex-wrap gap-2">
+                        {item.skill_details.resources.map((res, i) => (
+                          <a 
+                            key={i}
+                            href={res.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center space-x-2 px-3 py-1.5 bg-surface-container-low hover:bg-primary/5 border border-outline-variant rounded-lg text-xs font-medium transition-colors group/link"
+                          >
+                            <span className="text-primary group-hover/link:underline">{res.title}</span>
+                            <span className="text-[10px] px-1.5 py-0.5 bg-surface-container-high rounded text-on-surface-variant">{res.resource_type}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity">

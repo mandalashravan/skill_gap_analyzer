@@ -86,22 +86,69 @@ const Dashboard = () => {
         })}
       </div>
 
-      {/* Progress Chart Mockup / Summary */}
-      <div className="bg-surface-container p-8 rounded-lg border border-outline-variant">
-        <h3 className="text-xl font-bold mb-6 font-display">Current Status</h3>
-        <div className="space-y-6">
-          <div>
-            <div className="flex justify-between mb-2">
-              <span className="text-sm font-medium">Roadmap Completion</span>
-              <span className="text-sm font-bold text-primary">{stats?.overall_completion_percentage || 0}%</span>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Progress Chart Summary */}
+        <div className="bg-surface-container p-6 rounded-2xl border border-outline-variant shadow-sm">
+          <h3 className="text-xl font-bold mb-6 font-display flex items-center">
+            <TrendingUp size={20} className="mr-2 text-primary" /> Roadmap Progress
+          </h3>
+          <div className="space-y-6">
+            <div>
+              <div className="flex justify-between mb-2">
+                <span className="text-sm font-medium">Overall Completion</span>
+                <span className="text-sm font-bold text-primary">{stats?.overall_completion_percentage || 0}%</span>
+              </div>
+              <div className="h-4 bg-surface-container-highest rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-primary transition-all duration-500" 
+                  style={{ width: `${stats?.overall_completion_percentage || 0}%` }}
+                ></div>
+              </div>
             </div>
-            <div className="h-4 bg-surface-container-highest rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-primary transition-all duration-500" 
-                style={{ width: `${stats?.overall_completion_percentage || 0}%` }}
-              ></div>
+            
+            <div className="pt-4 grid grid-cols-2 gap-4">
+              <div className="p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+                <p className="text-[10px] font-bold uppercase text-on-surface-variant">In Progress</p>
+                <p className="text-xl font-bold">{stats?.in_progress_skills || 0}</p>
+              </div>
+              <div className="p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+                <p className="text-[10px] font-bold uppercase text-on-surface-variant">Not Started</p>
+                <p className="text-xl font-bold">{stats?.not_started_skills || 0}</p>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Recent Activity / Analysis History Link */}
+        <div className="bg-surface-container p-6 rounded-2xl border border-outline-variant shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 className="text-xl font-bold mb-6 font-display flex items-center">
+              <CheckCircle size={20} className="mr-2 text-emerald-500" /> Recent Actions
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-center p-4 bg-surface-container-low rounded-xl border border-outline-variant group cursor-pointer hover:border-primary/50 transition-all">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                  <TrendingUp size={18} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-bold group-hover:text-primary transition-colors">Resume Analysis</p>
+                  <p className="text-xs text-on-surface-variant">Last check: Just now</p>
+                </div>
+              </div>
+              <div className="flex items-center p-4 bg-surface-container-low rounded-xl border border-outline-variant group cursor-pointer hover:border-emerald-500/50 transition-all">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mr-4">
+                  <CheckCircle size={18} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-bold group-hover:text-emerald-500 transition-colors">Skill Validated</p>
+                  <p className="text-xs text-on-surface-variant">React Core Concepts: 80%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button className="mt-6 w-full py-3 bg-surface-container-high text-on-surface font-bold rounded-xl border border-outline hover:bg-surface-container-highest transition-all">
+            View All Activity
+          </button>
         </div>
       </div>
     </div>
